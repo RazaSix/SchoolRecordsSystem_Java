@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="1011.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SessionPageController">
+   <children>
+      <TabPane layoutX="33.0" layoutY="54.0" prefHeight="493.0" prefWidth="959.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Setup Session">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Group layoutX="303.0" layoutY="126.0">
+                           <children>
+                              <DatePicker fx:id="setupTermStart" layoutX="57.0" prefHeight="25.0" prefWidth="158.0" />
+                              <DatePicker fx:id="setupTermEnd" layoutX="57.0" layoutY="27.0" prefHeight="25.0" prefWidth="158.0" />
+                              <Label layoutX="-14.0" layoutY="5.0" text="Term Start" />
+                              <Label layoutX="-14.0" layoutY="32.0" text="Term End" />
+                           </children>
+                        </Group>
+                        <Button fx:id="setupAddTermBtn" layoutX="360.0" layoutY="210.0" mnemonicParsing="false" onAction="#createTerm" text="Add Term" />
+                        <ListView fx:id="setupCurrTermsListView" layoutX="86.0" layoutY="41.0" prefHeight="194.0" prefWidth="158.0" />
+                        <Label layoutX="302.0" layoutY="14.0" text="Current Terms">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Book Session">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="917.0">
+                     <children>
+                        <ListView fx:id="bookingChildListView" layoutX="26.0" layoutY="176.0" onMouseClicked="#checkChildStatus" prefHeight="132.0" prefWidth="163.0" />
+                        <Label layoutX="78.0" layoutY="162.0" text="Find Child" />
+                        <Button fx:id="bookSessionBtn" layoutX="284.0" layoutY="264.0" mnemonicParsing="false" onAction="#bookChildSession" text="Book Session" />
+                        <Label fx:id="TermLabel" layoutX="475.0" layoutY="6.0" text="TERM">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <TextField fx:id="bookingChildFilterTxtField" layoutX="26.0" layoutY="308.0" prefHeight="25.0" prefWidth="163.0" promptText="Filter" />
+                        <Label layoutX="67.0" layoutY="32.0" text="Select Term" />
+                        <Label layoutX="67.0" layoutY="92.0" text="Select Session" />
+                        <ChoiceBox fx:id="bookingTermDropdown" layoutX="27.0" layoutY="49.0" prefHeight="25.0" prefWidth="163.0" />
+                        <Label fx:id="SessionLabel" layoutX="729.0" layoutY="6.0" text="SESSION">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="bookSessionDatePicker" layoutX="27.0" layoutY="109.0" onAction="#loadCurrentBookedChildren" prefHeight="25.0" prefWidth="164.0" />
+                        <Pane layoutX="241.0" layoutY="45.0" prefHeight="153.0" prefWidth="204.0" style="-fx-background-color: black,lightblue;">
+                           <children>
+                              <GridPane layoutX="14.0" layoutY="29.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="PreSchool Days">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Breakfast" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Afterschool" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="preSchoolChkBox" mnemonicParsing="false" GridPane.columnIndex="1" />
+                                    <CheckBox fx:id="breakfastChkBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="afterschoolChkBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </Pane>
+                        <Button layoutX="475.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="PreSchool">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="625.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" text="Breakfast-School">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="788.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="AfterSchool">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="550.0" layoutY="363.0" text="/15" />
+                        <Label layoutX="701.0" layoutY="363.0" text="/15" />
+                        <Label layoutX="867.0" layoutY="363.0" text="/15" />
+                        <Label fx:id="brekSchCount" layoutX="676.0" layoutY="363.0" prefHeight="15.0" prefWidth="25.0" />
+                        <Label fx:id="preSchCount" layoutX="525.0" layoutY="363.0" prefHeight="15.0" prefWidth="25.0" />
+                        <Label fx:id="afterSchCount" layoutX="842.0" layoutY="363.0" prefHeight="15.0" prefWidth="25.0" />
+                        <ListView fx:id="dataDispPreSchListView" layoutX="475.0" layoutY="69.0" prefHeight="294.0" prefWidth="150.0" />
+                        <ListView fx:id="dataDispBrekListView" layoutX="626.0" layoutY="69.0" prefHeight="294.0" prefWidth="162.0" />
+                        <ListView fx:id="dataDispAfterSchListView" layoutX="788.0" layoutY="69.0" prefHeight="294.0" prefWidth="156.0" />
+                        <Button fx:id="preschRemoveSelectedBtn" layoutX="495.0" layoutY="394.0" mnemonicParsing="false" onAction="#clearPreschSelectedSession" text="Remove Selected" />
+                        <Button fx:id="preschClearAllBtn" layoutX="495.0" layoutY="420.0" mnemonicParsing="false" onAction="#clearPreschSession" prefHeight="25.0" prefWidth="106.0" text="Clear All" />
+                        <Button fx:id="breakClearAllBtn" layoutX="666.0" layoutY="420.0" mnemonicParsing="false" onAction="#clearBreakschSession" prefHeight="25.0" prefWidth="108.0" text="Clear All" />
+                        <Button fx:id="breakRemoveSelectedBtn" layoutX="666.0" layoutY="394.0" mnemonicParsing="false" onAction="#clearBreakSelectedSession" text="Remove Selected" />
+                        <Button fx:id="afterschClearAllBtn" layoutX="814.0" layoutY="420.0" mnemonicParsing="false" onAction="#clearAfterschSession" prefHeight="25.0" prefWidth="105.0" text="Clear All" />
+                        <Button fx:id="afterRemoveSelectedBtn" layoutX="813.0" layoutY="394.0" mnemonicParsing="false" onAction="#clearAfterschSelectedSession" text="Remove Selected" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Bulk Book Session">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="119.0" layoutY="51.0" text="Select Term" />
+                        <ChoiceBox fx:id="bulkTermDropdown" layoutX="70.0" layoutY="68.0" prefHeight="25.0" prefWidth="163.0" />
+                        <DatePicker fx:id="bulkTermStartDatePicker" layoutX="63.0" layoutY="138.0" />
+                        <DatePicker fx:id="bulkTermEndDatePicker" layoutX="64.0" layoutY="201.0" />
+                        <Label layoutX="124.0" layoutY="121.0" text="Start Date" />
+                        <Label layoutX="124.0" layoutY="184.0" text="End Date" />
+                        <ListView fx:id="bulkTermChildList" layoutX="318.0" layoutY="65.0" onMouseClicked="#checkBulkChildStatus" prefHeight="132.0" prefWidth="163.0" />
+                        <Label layoutX="373.0" layoutY="51.0" text="Find Child" />
+                        <TextField fx:id="bulkChildFilterTxtField" layoutX="318.0" layoutY="197.0" prefHeight="25.0" prefWidth="163.0" promptText="Filter" />
+                        <TextArea fx:id="bulkConfirmTxtView" editable="false" layoutX="766.0" layoutY="60.0" prefHeight="157.0" prefWidth="164.0" />
+                        <Button fx:id="bulkBookSessionBtn" layoutX="362.0" layoutY="257.0" mnemonicParsing="false" onAction="#bookSessionBulk" text="Book Sessions" />
+                        <Label fx:id="bulkTermLabel" layoutX="796.0" layoutY="46.0" text="TERM" />
+                        <Pane layoutX="537.0" layoutY="62.0" prefHeight="153.0" prefWidth="204.0" style="-fx-background-color: black,lightblue;">
+                           <children>
+                              <GridPane layoutX="14.0" layoutY="29.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="PreSchool Days">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Breakfast" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Afterschool" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="bulkPreSchoolChkBox" mnemonicParsing="false" GridPane.columnIndex="1" />
+                                    <CheckBox fx:id="bulkBreakfastChkBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="bulkAfterschoolChkBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="logoutBtn" layoutX="938.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button fx:id="adminBtn" layoutX="33.0" layoutY="22.0" mnemonicParsing="false" onAction="#backtoAdmin" text="Admin" />
+   </children>
+</AnchorPane>
